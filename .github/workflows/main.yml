@@ -22,9 +22,9 @@ jobs:
       run: npm install
 
     - name: Build and Test
-      run: |
-        npm run build
-        npm test
+    
+  
+       npm test
 
   build_and_publish_image:
     needs: build_and_test
@@ -45,5 +45,10 @@ jobs:
     - name: Log in to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Push Docker Image to Docker Hub
-      run: docker push jashan50/cpsy-350 
+    - name: Build and Push Docker Image
+ 
+      run: |
+ 
+        docker build -t jashan50/cpsy-350:latest .
+ 
+        docker push jashan50/cpsy-350:latest 
